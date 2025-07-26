@@ -1,0 +1,114 @@
+HTML Code
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Calculator</title>
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+  <div class="calculator">
+    <input type="text" id="display" disabled />
+    <div class="buttons">
+      <button>7</button>
+      <button>8</button>
+      <button>9</button>
+      <button>/</button>
+      <button>4</button>
+      <button>5</button>
+      <button>6</button>
+      <button>*</button>
+      <button>1</button>
+      <button>2</button>
+      <button>3</button>
+      <button>-</button>
+      <button>0</button>
+      <button>C</button>
+      <button>=</button>
+      <button>+</button>
+    </div>
+  </div>
+  <script src="script.js"></script>
+</body>
+</html>
+
+
+
+CSS Code
+
+body {
+    background: #1e1e2f;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    font-family: 'Segoe UI', sans-serif;
+  }
+  
+  .calculator {
+    background: #2e2e3d;
+    padding: 20px;
+    border-radius: 15px;
+    box-shadow: 0 5px 20px rgba(0,0,0,0.3);
+  }
+  
+  #display {
+    width: 100%;
+    font-size: 2em;
+    padding: 10px;
+    border: none;
+    background: #3e3e5e;
+    color: white;
+    text-align: right;
+    border-radius: 10px;
+    margin-bottom: 15px;
+  }
+  
+  .buttons {
+    display: grid;
+    grid-template-columns: repeat(4, 60px);
+    gap: 10px;
+  }
+  
+  button {
+    padding: 20px;
+    font-size: 1.2em;
+    background: #4e4e6a;
+    color: white;
+    border: none;
+    border-radius: 10px;
+    cursor: pointer;
+    transition: background 0.3s;
+  }
+  
+  button:hover {
+    background: #6a6a9e;
+  }
+
+
+
+
+JavaScript Code
+
+let display = document.getElementById("display");
+let buttons = document.querySelectorAll("button");
+
+buttons.forEach(button => {
+  button.addEventListener("click", () => {
+    let value = button.textContent;
+
+    if (value === "=") {
+      try {
+        display.value = eval(display.value);
+      } catch {
+        display.value = "Error";
+      }
+    } else if (value === "C") {
+      display.value = "";
+    } else {
+      display.value += value;
+    }
+  });
+});
